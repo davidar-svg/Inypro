@@ -1126,6 +1126,12 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         <span>Total:</span>
         <span id="cart-total">$0</span>
       </div>
+      <input 
+        type="email" 
+        id="cart-email" 
+        placeholder="Tu email para el comprobante" 
+        style="width:100%; padding:10px 14px; border:1px solid #d1d9e0; border-radius:8px; font-size:0.88rem; margin-bottom:10px; outline:none; font-family:inherit;"
+      >
       <button class="btn btn-success btn-block" id="checkout-btn" onclick="iniciarPago()">
         <i class="fas fa-lock"></i> Pagar Ahora
       </button>
@@ -1236,6 +1242,12 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         alert('Tu carrito está vacío. Agrega al menos un producto para continuar.');
         return;
       }
+      const email = document.getElementById('cart-email').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Por favor ingresa tu email para continuar.');
+        document.getElementById('cart-email').focus();
+        return;
+      }
       const btn = document.getElementById('checkout-btn');
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
@@ -1243,7 +1255,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         const response = await fetch('/.netlify/functions/crear-pago', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: cart }),
+          body: JSON.stringify({ items: cart, email }),
         });
         const data = await response.json();
         if (data.redirectUrl) {
