@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago Confirmado – INYPRO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0b3c5d;
+      --secondary: #1f6fa8;
+      --accent: #d4af37;
+      --success: #22c55e;
+      --light: #f4f6f8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 50px 40px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    .icon-wrap {
+      width: 80px;
+      height: 80px;
+      background: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .icon-wrap i { font-size: 2.2rem; color: var(--success); }
+    .icon-wrap.error { background: #fee2e2; }
+    .icon-wrap.error i { color: #ef4444; }
+    h1 { color: var(--primary); font-size: 1.7rem; margin-bottom: 12px; }
+    p { color: #64748b; line-height: 1.6; margin-bottom: 10px; }
+    .order-box {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+      text-align: left;
+    }
+    .order-box span { font-size: 0.85rem; color: #64748b; }
+    .order-box strong { display: block; color: var(--primary); font-size: 1rem; margin-top: 4px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+      margin: 6px;
+      border: none;
+    }
+    .btn-primary { background: var(--secondary); color: white; }
+    .btn-primary:hover { background: var(--primary); transform: translateY(-2px); }
+    .btn-whatsapp { background: #25d366; color: white; }
+    .btn-whatsapp:hover { background: #1ebe5b; transform: translateY(-2px); }
+    .logo { margin-bottom: 30px; }
+    .logo img { height: 44px; margin: 0 auto; }
+    .logo-name { color: var(--primary); font-weight: 800; font-size: 1.1rem; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <img src="inypro-logo3.png" alt="INYPRO" onerror="this.style.display='none'">
+      <div class="logo-name">INYPRO</div>
+    </div>
+
+    <div class="icon-wrap" id="icon-wrap">
+      <i class="fas fa-check" id="icon"></i>
+    </div>
+
+    <h1 id="titulo">¡Pago Confirmado!</h1>
+    <p id="mensaje">Tu pago fue procesado exitosamente. En breve nos pondremos en contacto contigo para coordinar la instalación.</p>
+
+    <div class="order-box" id="order-box" style="display:none;">
+      <span>Número de orden</span>
+      <strong id="order-num">—</strong>
+    </div>
+
+    <div style="margin-top: 28px;">
+      <a href="/" class="btn btn-primary">
+        <i class="fas fa-home"></i> Volver al inicio
+      </a>
+      <a href="https://wa.me/56961934616?text=Hola INYPRO, acabo de realizar un pago y quiero coordinar mi instalación." 
+         class="btn btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> Coordinar por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Leer token de la URL que Flow envía de vuelta
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    if (token) {
+      // Consultar estado real del pago
+      fetch(`/.netlify/functions/confirmar-pago?token=${token}`)
+        .then(r => r.json())
+        .catch(() => null);
+
+      // Mostrar orden si viene en localStorage
+      const cart = JSON.parse(localStorage.getItem('inypro_cart')) || [];
+      if (cart.length > 0) {
+        document.getElementById('order-box').style.display = 'block';
+        document.getElementById('order-num').textContent = 'INYPRO-' + Date.now();
+        localStorage.removeItem('inypro_cart');
+      }
+    }
+
+    // Si Flow retorna status=error en la URL
+    const status = params.get('status');
+    if (status && status !== '2') {
+      document.getElementById('icon-wrap').classList.add('error');
+      document.getElementById('icon').className = 'fas fa-times';
+      document.getElementById('titulo').textContent = 'Pago no completado';
+      document.getElementById('mensaje').textContent = 'Hubo un problema con tu pago. Por favor intenta nuevamente o contáctanos por WhatsApp.';
+    }
+  </script>
+</body>
+</html>
