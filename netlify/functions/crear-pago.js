@@ -16,9 +16,20 @@ exports.handler = async (event) => {
     const secretKey = process.env.FLOW_SECRET_KEY;
     const apiUrl    = process.env.FLOW_API_URL;
 
-    const amount    = items.reduce((sum, i) => sum + i.price, 0);
+    // DIAGNÓSTICO
+    console.log('API URL:', apiUrl);
+    console.log('API KEY existe:', !!apiKey);
+    console.log('API KEY longitud:', apiKey ? apiKey.length : 0);
+    console.log('SECRET KEY existe:', !!secretKey);
+
+    if (!apiKey || !secretKey || !apiUrl) {
+      console.error('Variables de entorno faltantes');
+      return { statusCode: 500, body: JSON.stringify({ error: 'Variables de entorno no configuradas' }) };
+    }
+
+    const amount        = items.reduce((sum, i) => sum + i.price, 0);
     const comercioOrder = 'INYPRO-' + Date.now();
-    const subject   = items.map(i => i.name).join(', ');
+    const subject       = items.map(i => i.name).join(', ');
 
     const params = {
       apiKey,
@@ -31,13 +42,14 @@ exports.handler = async (event) => {
       urlReturn: 'https://inypro.netlify.app/gracias.html',
     };
 
-    // Firma requerida por Flow
     const keys = Object.keys(params).sort();
     let toSign = '';
     keys.forEach(k => { toSign += k + params[k]; });
     params.s = crypto.createHmac('sha256', secretKey).update(toSign).digest('hex');
 
     const body = new URLSearchParams(params).toString();
+
+    console.log('Enviando a Flow:', `${apiUrl}/payment/create`);
 
     const response = await fetch(`${apiUrl}/payment/create`, {
       method: 'POST',
@@ -46,6 +58,7 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
+    console.log('Respuesta Flow:', JSON.stringify(data));
 
     if (data.url && data.token) {
       return {
