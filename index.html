@@ -1034,7 +1034,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
           </div>
           <div class="contact-details">
             <p><strong>📍 Ubicación:</strong> Viña del Mar, Chile</p>
-            <p><strong>✉️ Email:</strong> contacto@inypro.cl</p>
+            <p><strong>✉️ Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fa9995948e9b998e95ba9394838a8895d49996">[email&#160;protected]</a></p>
             <p><strong>📞 WhatsApp:</strong> <a href="https://wa.me/56961934616" style="color:var(--secondary);">+56 9 6193 4616</a></p>
           </div>
         </div>
@@ -1126,13 +1126,16 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         <span>Total:</span>
         <span id="cart-total">$0</span>
       </div>
-      <button class="btn btn-success btn-block" id="checkout-btn">
+      <button class="btn btn-success btn-block" id="checkout-btn" onclick="iniciarPago()">
         <i class="fas fa-lock"></i> Pagar Ahora
       </button>
+      <p style="font-size:0.72rem; color:#94a3b8; text-align:center; margin-top:10px;">
+        <i class="fas fa-shield-alt"></i> Pago 100% seguro procesado por Flow
+      </p>
     </div>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     /* ===== CARRITO ===== */
     const cartSidebar = document.getElementById('cart-sidebar');
     const cartList = document.getElementById('cart-list');
@@ -1203,15 +1206,6 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
       setTimeout(() => f.scrollIntoView({ behavior: 'smooth' }), 50);
     }
 
-    function procesarInspeccion(e) {
-      e.preventDefault();
-      const nombre = document.getElementById('ins-nombre').value;
-      const horario = document.getElementById('ins-horario').value;
-      alert(`¡Gracias ${nombre}! Redirigiendo a pasarela segura...\n\nInspección Técnica\nHorario: ${horario}\n\nNos contactaremos contigo a la brevedad.`);
-      document.getElementById('agenda-inspeccion').style.display = 'none';
-      document.getElementById('formInspeccion').reset();
-    }
-
     function seleccionarMotivo(valor) {
       setTimeout(() => { document.getElementById('motivoSelect').value = valor; }, 300);
     }
@@ -1230,11 +1224,74 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
       const cardWidth = track.querySelector('.carousel-card').offsetWidth + 20;
       const style = window.getComputedStyle(track);
       const matrix = new WebKitCSSMatrix(style.transform);
-      let next = matrix.m41 - (dir * cardWidth);
+      let next = matrix.m41 - cardWidth * dir;
       const max = -(track.scrollWidth - track.parentElement.offsetWidth);
       next = Math.max(max, Math.min(0, next));
       track.style.transform = `translateX(${next}px)`;
     }
+
+    /* ===== PAGO CON FLOW ===== */
+    async function iniciarPago() {
+      if (cart.length === 0) {
+        alert('Tu carrito está vacío. Agrega al menos un producto para continuar.');
+        return;
+      }
+      const btn = document.getElementById('checkout-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+      try {
+        const response = await fetch('/.netlify/functions/crear-pago', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: cart }),
+        });
+        const data = await response.json();
+        if (data.redirectUrl) {
+          window.location.href = data.redirectUrl;
+        } else {
+          throw new Error(data.error || 'Error al conectar con Flow');
+        }
+      } catch (err) {
+        alert('Hubo un problema al iniciar el pago. Por favor intenta nuevamente o contáctanos por WhatsApp.');
+        console.error(err);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
+      }
+    }
+
+    /* ===== INSPECCIÓN - PAGO FLOW ===== */
+    function procesarInspeccion(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('ins-nombre').value;
+      const horario = document.getElementById('ins-horario').value;
+      if (!nombre || !horario) {
+        alert('Por favor completa todos los campos.');
+        return;
+      }
+      const cart_inspeccion = [{ name: 'Inspección Técnica – ' + horario, price: 129000 }];
+      const btn = e.submitter;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+      fetch('/.netlify/functions/crear-pago', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart_inspeccion, nombre }),
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.redirectUrl) {
+          window.location.href = data.redirectUrl;
+        } else {
+          throw new Error(data.error);
+        }
+      })
+      .catch(err => {
+        alert('Error al iniciar el pago. Contáctanos por WhatsApp.');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento';
+      });
+    }
+
   </script>
 </body>
 </html>
