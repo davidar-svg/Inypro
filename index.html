@@ -1049,6 +1049,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
     <form id="formInspeccion" onsubmit="procesarInspeccion(event)" class="agenda-form">
       <input type="text" id="ins-nombre" placeholder="Nombre completo" required>
       <input type="tel" id="ins-fono" placeholder="Teléfono de contacto" required>
+      <input type="email" id="ins-email" placeholder="Tu email para el comprobante de pago" required class="full">
       <input type="text" id="ins-direccion" placeholder="Dirección de la propiedad" required class="full">
       <div class="full">
         <label style="display:block; margin-bottom:6px; font-weight:600; color:var(--primary);">Horario de preferencia (Lun a Vie, 09:00 – 18:00):</label>
@@ -1276,7 +1277,8 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
       e.preventDefault();
       const nombre = document.getElementById('ins-nombre').value;
       const horario = document.getElementById('ins-horario').value;
-      if (!nombre || !horario) {
+      const email = document.getElementById('ins-email').value.trim();
+      if (!nombre || !horario || !email) {
         alert('Por favor completa todos los campos.');
         return;
       }
@@ -1287,7 +1289,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
       fetch('/.netlify/functions/crear-pago', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: cart_inspeccion, nombre }),
+        body: JSON.stringify({ items: cart_inspeccion, nombre, email }),
       })
       .then(r => r.json())
       .then(data => {
