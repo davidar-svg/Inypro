@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mesa de Centro Industrial | INYPRO – Viña del Mar</title>
+  <meta name="description" content="Mesa de centro de hierro y porcelanato con estilo industrial. Diseño exclusivo, estructura robusta y acabados premium. Despacho a domicilio. $175.000 CLP." />
+  <meta name="keywords" content="mesa centro hierro porcelanato chile, mobiliario industrial viña del mar, mesa living exclusiva, mueble hierro personalizado">
+  <meta property="og:title" content="Mesa de Centro Industrial – INYPRO">
+  <meta property="og:description" content="Mesa de centro en hierro y porcelanato. Diseño industrial de vanguardia, fabricación exclusiva. Despacho a domicilio.">
+  <meta property="og:type" content="product">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0b3c5d;
+      --secondary: #1f6fa8;
+      --accent: #d4af37;
+      --success: #22c55e;
+      --light: #f4f6f8;
+      --dark: #0f172a;
+      --text: #1f2933;
+      --text-muted: #64748b;
+      --whatsapp: #25d366;
+      --industrial: #3d2b1f;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.12);
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: 'Oswald', sans-serif; line-height: 1.2; }
+    p { color: var(--text-muted); line-height: 1.7; }
+
+    /* HEADER */
+    header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 0 20px; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 20px; }
+    .header-inner img { height: 46px; }
+    .header-tagline { font-size: 1.1rem; font-weight: 700; font-style: italic; letter-spacing: 1px; opacity: 0.9; }
+    .header-sub { font-size: 0.8rem; opacity: 0.65; }
+
+    /* HERO */
+    .hero { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: #fef3c7; color: #92400e; padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .hero h1 { color: var(--primary); margin-bottom: 14px; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+    .hero > div:first-child > p { font-size: 1rem; margin-bottom: 24px; }
+
+    /* SPECS */
+    .specs { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+    .specs li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: var(--text); padding: 10px 14px; background: white; border-radius: 8px; border-left: 3px solid var(--accent); }
+    .specs li i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+
+    /* DIMENSIONES */
+    .dimensiones-box { background: var(--dark); border-radius: var(--radius); padding: 20px 24px; margin: 16px 0; display: flex; gap: 24px; }
+    .dim { text-align: center; flex: 1; }
+    .dim strong { display: block; font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--accent); }
+    .dim span { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* PRECIO */
+    .price-box { background: white; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-md); margin: 20px 0; border-top: 4px solid var(--accent); }
+    .price-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .price-main { font-family: 'Oswald', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--primary); }
+    .price-main span { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+    .price-divider { border: none; border-top: 1px solid #e8edf3; margin: 14px 0; }
+    .price-sub { font-size: 0.88rem; color: var(--text-muted); }
+    .price-sub strong { color: var(--primary); }
+
+    /* BOTONES */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.25s; border: none; font-family: inherit; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(11,60,93,0.3); }
+    .btn-accent { background: var(--accent); color: var(--dark); }
+    .btn-accent:hover { background: #c9a227; transform: translateY(-2px); }
+    .btn-success { background: var(--success); color: white; }
+    .btn-success:hover { background: #16a34a; transform: translateY(-2px); }
+    .btn-whatsapp { background: var(--whatsapp); color: white; }
+    .btn-whatsapp:hover { background: #1dab52; transform: translateY(-2px); }
+    .btn-block { width: 100%; }
+    .btn-lg { padding: 16px 28px; font-size: 1rem; }
+    .cta-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+
+    /* IMAGEN */
+    .hero-img-wrap { position: relative; }
+    .hero-img-wrap img { border-radius: 16px; box-shadow: var(--shadow-md); width: 100%; }
+    .img-badge { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); background: var(--dark); color: white; padding: 10px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .img-badge i { color: var(--accent); margin-right: 6px; }
+
+    /* MATERIALES */
+    .materiales { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { color: var(--primary); margin-bottom: 10px; font-size: clamp(1.5rem, 3vw, 2rem); }
+    .section-title p { max-width: 500px; margin: 0 auto; }
+    .mat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .mat-card { text-align: center; padding: 32px 24px; border-radius: var(--radius); border: 1px solid #e8edf3; background: white; transition: transform 0.25s, box-shadow 0.25s; }
+    .mat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .mat-icon { width: 64px; height: 64px; background: #1c1008; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 1.6rem; color: var(--accent); }
+    .mat-card h3 { color: var(--primary); font-size: 1rem; margin-bottom: 8px; }
+    .mat-card p { font-size: 0.88rem; }
+
+    /* PERSONALIZACIÓN */
+    .personaliza { background: white; padding: 70px 20px; }
+    .personaliza-inner { max-width: 1200px; margin: 0 auto; }
+    .custom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .custom-content h2 { color: var(--primary); margin-bottom: 14px; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; }
+    .check-list li i { color: var(--success); margin-top: 2px; flex-shrink: 0; }
+    .custom-price { background: var(--light); border-radius: 10px; padding: 18px 20px; border-left: 4px solid var(--accent); margin: 20px 0; }
+    .custom-price strong { color: var(--primary); font-family: 'Syne', sans-serif; font-size: 1.1rem; }
+    .custom-img img { border-radius: var(--radius); box-shadow: var(--shadow-md); width: 100%; }
+
+    /* TESTIMONIOS */
+    .testimonios-strip { background: var(--primary); padding: 60px 20px; }
+    .testimonios-strip-inner { max-width: 1200px; margin: 0 auto; }
+    .testimonios-strip .section-title h2 { color: white; }
+    .testimonios-strip .section-title p { color: rgba(255,255,255,0.6); }
+    .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .test-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); padding: 24px; }
+    .test-stars { color: var(--accent); margin-bottom: 12px; }
+    .test-card blockquote { color: rgba(255,255,255,0.85); font-size: 0.9rem; font-style: italic; line-height: 1.7; margin-bottom: 16px; }
+    .test-author { font-size: 0.8rem; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; }
+    .test-author strong { display: block; color: white; font-size: 0.88rem; margin-bottom: 2px; }
+
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 70px 20px; text-align: center; }
+    .cta-section h2 { color: white; font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 12px; }
+    .cta-section p { color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 30px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* CARRITO */
+    #cart-sidebar { position: fixed; right: -380px; top: 0; width: 340px; height: 100vh; background: white; box-shadow: -4px 0 20px rgba(0,0,0,0.15); z-index: 4000; transition: right 0.3s ease; display: flex; flex-direction: column; }
+    #cart-sidebar.active { right: 0; }
+    .cart-header-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #e8edf3; }
+    .cart-header-bar h3 { color: var(--primary); margin: 0; font-family: 'Syne', sans-serif; }
+    #close-cart { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-muted); transition: color 0.2s; }
+    #close-cart:hover { color: #ef4444; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px 20px; }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; }
+    .cart-item span { font-size: 0.88rem; flex: 1; }
+    .cart-footer { padding: 20px; border-top: 1px solid #e8edf3; background: #fafafa; }
+    .cart-total-row { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; color: var(--primary); margin-bottom: 16px; font-family: 'Oswald', sans-serif; }
+
+    /* FLOTANTES */
+    .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 2000; transition: transform 0.3s; }
+    .whatsapp-btn:hover { transform: scale(1.1); }
+    .home-btn { position: fixed; bottom: 25px; left: 25px; background: var(--secondary); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 2000; transition: transform 0.3s, background 0.3s; }
+    .home-btn:hover { background: var(--primary); transform: scale(1.1); }
+    .cart-float-btn { position: fixed; bottom: 100px; right: 25px; background: var(--primary); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 2500; cursor: pointer; transition: transform 0.2s, background 0.2s; }
+    .cart-float-btn:hover { transform: scale(1.1); background: var(--secondary); }
+    .cart-count { position: absolute; top: -4px; right: -4px; background: #ef4444; color: white; font-size: 11px; font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    footer { background: var(--dark); color: #cbd5e1; text-align: center; padding: 30px 20px; font-size: 0.85rem; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 30px; }
+      .hero div:first-child { order: 2; }
+      .hero-img-wrap { order: 1; }
+      .header-inner { flex-direction: column; text-align: center; height: auto; padding: 16px 0; gap: 6px; }
+      .custom-grid { grid-template-columns: 1fr; }
+      .dimensiones-box { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="https://wa.me/56961934616?text=Hola INYPRO, me interesa la mesa de centro de hierro. ¿Tienen stock disponible?" class="whatsapp-btn" target="_blank" aria-label="Consultar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="index.html" class="home-btn" title="Volver al inicio" aria-label="Volver al inicio">
+    <i class="fas fa-home"></i>
+  </a>
+  <div class="cart-float-btn" id="open-cart" aria-label="Abrir carrito">
+    <i class="fas fa-shopping-cart"></i>
+    <div class="cart-count" id="count-val">0</div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html"><img src="inypro-logo3.png" alt="Logo INYPRO" loading="lazy"></a>
+      <div>
+        <div class="header-tagline">Experiencia que da valor</div>
+        <div class="header-sub">Ingeniería · Proyectos · Asesoría</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="hero-badge"><i class="fas fa-industry"></i> Mobiliario Exclusivo</div>
+        <h1>Mesa de Centro Industrial</h1>
+        <p>Aporta un toque vanguardista y sofisticado a tu espacio. Fabricada en hierro y porcelanato, combina la resistencia del metal con la elegancia de los acabados premium.</p>
+
+        <ul class="specs">
+          <li><i class="fas fa-hammer"></i> Estructura de hierro reforzado con pintura electrostática</li>
+          <li><i class="fas fa-paint-roller"></i> Acabado resistente a rayones, golpes y humedad</li>
+          <li><i class="fas fa-border-all"></i> Cubierta de porcelanato de alta calidad</li>
+          <li><i class="fas fa-couch"></i> Ideal para livings, oficinas y salas de espera</li>
+          <li><i class="fas fa-truck"></i> Despacho a domicilio disponible en toda la región</li>
+        </ul>
+
+        <div class="dimensiones-box">
+          <div class="dim"><strong>50 cm</strong><span>Ancho</span></div>
+          <div class="dim"><strong>40 cm</strong><span>Alto</span></div>
+          <div class="dim"><strong>100 cm</strong><span>Largo</span></div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-label">Precio de lista</div>
+          <div class="price-main">$175.000 <span>CLP</span></div>
+          <hr class="price-divider">
+          <div class="price-sub"><strong>Agendar Personalización desde $70.000 CLP</strong></div>
+          <div class="price-sub" style="margin-top:6px;">Envío por pagar según destino .</div>
+        </div>
+
+        <div class="cta-group">
+          <button class="btn btn-success btn-lg btn-block add-to-cart" data-product="Mesa de Centro Industrial (hierro y porcelanato)" data-price="175000">
+            <i class="fas fa-cart-plus"></i> Agregar al Carro
+          </button>
+          <button class="btn btn-accent btn-block add-to-cart" data-product="Personalización Mesa de Centro" data-price="70000">
+            <i class="fas fa-magic"></i> Agendar Personalización por ($70.000)
+          </button>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-img-wrap">
+        <img src="mesa inypro.png" alt="Mesa de Centro Industrial INYPRO – Hierro y Porcelanato" loading="lazy">
+        <div class="img-badge"><i class="fas fa-star"></i> Diseño Exclusivo</div>
+      </div>
+    </section>
+
+    <!-- MATERIALES -->
+    <section class="materiales">
+      <div class="section-title">
+        <h2>Materiales de primera calidad</h2>
+        <p>Cada pieza es fabricada con los mejores materiales para garantizar durabilidad y estética.</p>
+      </div>
+      <div class="mat-grid">
+        <div class="mat-card">
+          <div class="mat-icon"><i class="fas fa-industry"></i></div>
+          <h3>Hierro Estructural</h3>
+          <p>Acero de alta resistencia con soldadura profesional. Soporte garantizado para uso diario intensivo.</p>
+        </div>
+        <div class="mat-card">
+          <div class="mat-icon"><i class="fas fa-spray-can"></i></div>
+          <h3>Pintura Electrostática</h3>
+          <p>Acabado uniforme y duradero. Resistente a la oxidación, humedad y rayones cotidianos.</p>
+        </div>
+        <div class="mat-card">
+          <div class="mat-icon"><i class="fas fa-border-all"></i></div>
+          <h3>Porcelanato Premium</h3>
+          <p>Cubierta de porcelanato seleccionado. Fácil de limpiar, resistente al calor y a los impactos.</p>
+        </div>
+        <div class="mat-card">
+          <div class="mat-icon"><i class="fas fa-drafting-compass"></i></div>
+          <h3>Diseño a Medida</h3>
+          <p>Opción de personalizar dimensiones, color de porcelanato y acabado del hierro según tu espacio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONALIZACIÓN -->
+    <section class="personaliza">
+      <div class="personaliza-inner">
+        <div class="custom-grid">
+          <div class="custom-content">
+            <h2>¿Quieres algo único?<br>Personalizamos tu mesa</h2>
+            <p>Si el modelo estándar no se adapta perfectamente a tu espacio, podemos fabricar tu mesa con las dimensiones exactas que necesitas.</p>
+            <ul class="check-list">
+              <li><i class="fas fa-check-circle"></i> Dimensiones personalizadas según tu espacio</li>
+              <li><i class="fas fa-check-circle"></i> Elección de color y textura de porcelanato</li>
+              <li><i class="fas fa-check-circle"></i> Acabado del hierro: negro mate, negro brillante o grafito</li>
+              <li><i class="fas fa-check-circle"></i> Tiempo de fabricación: 7 a 10 días hábiles</li>
+            </ul>
+            <div class="custom-price">
+              <strong>Personalización desde $70.000 CLP</strong>
+              <p style="margin-top:6px; font-size:0.88rem;">Precio varía según complejidad. Cotización sin compromiso.</p>
+            </div>
+            <a href="https://wa.me/56961934616?text=Hola INYPRO, quiero cotizar una mesa de centro personalizada." class="btn btn-primary" target="_blank">
+              <i class="fab fa-whatsapp"></i> Cotizar Personalización
+            </a>
+          </div>
+          <div class="custom-img">
+            <img src="mesa inypro.png" alt="Mesa de Centro Personalizada INYPRO" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <div class="testimonios-strip">
+      <div class="testimonios-strip-inner">
+        <div class="section-title">
+          <h2>Clientes que eligieron calidad</h2>
+          <p>Piezas únicas en hogares y oficinas de la región.</p>
+        </div>
+        <div class="test-grid">
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <blockquote>"La mesa llegó perfecta y mucho mejor de lo esperado. El hierro es muy sólido y el porcelanato quedó precioso. Es el centro de atención de mi living."</blockquote>
+            <div class="test-author"><strong>Fernanda G.</strong> Viña del Mar · Mesa Industrial</div>
+          </div>
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <blockquote>"La pedí personalizada con medidas distintas y quedó exacta. La calidad de construcción es excelente. Despacho rápido y bien embalada."</blockquote>
+            <div class="test-author"><strong>Luis T.</strong> Quilpué · Mesa Personalizada</div>
+          </div>
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <blockquote>"La compramos para la sala de espera de la oficina. Da una imagen muy profesional y moderna. La estructura es muy robusta para uso intensivo."</blockquote>
+            <div class="test-author"><strong>Marcela A.</strong> Valparaíso · Mesa Oficina</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="cta-section">
+      <h2>¿Listo para sumar diseño a tu espacio?</h2>
+      <p>Consulta disponibilidad de stock o cotiza tu mesa personalizada sin compromiso.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/56961934616?text=Hola INYPRO, quiero consultar la mesa de centro de hierro." class="btn btn-whatsapp btn-lg" target="_blank">
+          <i class="fab fa-whatsapp"></i> Consultar Ahora
+        </a>
+        <a href="index.html#contacto" class="btn" style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.3);">
+          <i class="fas fa-envelope"></i> Enviar Formulario
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 INYPRO · Viña del Mar, Chile · <a href="index.html" style="color:#94a3b8;">Volver al inicio</a></p>
+  </footer>
+
+  <!-- Carrito -->
+  <div id="cart-sidebar">
+    <div class="cart-header-bar">
+      <h3>Mi Carrito</h3>
+      <button id="close-cart">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-list"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row"><span>Total:</span><span id="cart-total">$0</span></div>
+      <button class="btn btn-success btn-block btn-lg" onclick="irAPagar()">
+        <i class="fas fa-lock"></i> Pagar Ahora
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartList = document.getElementById('cart-list');
+    const totalDisplay = document.getElementById('cart-total');
+    const countDisplay = document.getElementById('count-val');
+    let cart = JSON.parse(localStorage.getItem('inypro_cart')) || [];
+    updateUI();
+
+    document.getElementById('open-cart').addEventListener('click', () => cartSidebar.classList.add('active'));
+    document.getElementById('close-cart').addEventListener('click', () => cartSidebar.classList.remove('active'));
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cart.push({ name: btn.dataset.product, price: parseInt(btn.dataset.price) });
+        localStorage.setItem('inypro_cart', JSON.stringify(cart));
+        updateUI(); cartSidebar.classList.add('active');
+      });
+    });
+
+    function updateUI() {
+      cartList.innerHTML = cart.length === 0
+        ? '<p style="text-align:center;color:#999;margin-top:30px;">Tu carrito está vacío</p>'
+        : cart.map((item, i) => `
+          <div class="cart-item">
+            <span>${item.name}</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-weight:700;color:var(--primary);">$${item.price.toLocaleString('es-CL')}</span>
+              <button onclick="removeItem(${i})" style="background:none;border:none;color:#ef4444;cursor:pointer;padding:4px;"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>`).join('');
+      const total = cart.reduce((s, i) => s + i.price, 0);
+      totalDisplay.innerText = `$${total.toLocaleString('es-CL')}`;
+      countDisplay.innerText = cart.length;
+    }
+
+    window.removeItem = (i) => { cart.splice(i, 1); localStorage.setItem('inypro_cart', JSON.stringify(cart)); updateUI(); };
+
+    function irAPagar() {
+      if (!cart.length) return alert('El carrito está vacío');
+      const total = cart.reduce((s, i) => s + i.price, 0);
+      const detalle = cart.map(i => `- ${i.name}`).join('%0A');
+      window.open(`https://wa.me/56961934616?text=Hola INYPRO, quiero pagar mi pedido:%0A${detalle}%0ATotal: $${total.toLocaleString('es-CL')} CLP`, '_blank');
+    }
+  </script>
+</body>
+</html>
