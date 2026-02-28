@@ -16,14 +16,7 @@ exports.handler = async (event) => {
     const secretKey = process.env.FLOW_SECRET_KEY;
     const apiUrl    = process.env.FLOW_API_URL;
 
-    // DIAGNÓSTICO
-    console.log('API URL:', apiUrl);
-    console.log('API KEY existe:', !!apiKey);
-    console.log('API KEY longitud:', apiKey ? apiKey.length : 0);
-    console.log('SECRET KEY existe:', !!secretKey);
-
     if (!apiKey || !secretKey || !apiUrl) {
-      console.error('Variables de entorno faltantes');
       return { statusCode: 500, body: JSON.stringify({ error: 'Variables de entorno no configuradas' }) };
     }
 
@@ -36,7 +29,7 @@ exports.handler = async (event) => {
       amount: String(amount),
       commerceOrder: comercioOrder,
       currency: 'CLP',
-      email: email || 'cliente@inypro.cl',
+      email: email,
       subject: subject.substring(0, 200),
       urlConfirmation: 'https://inypro.netlify.app/.netlify/functions/confirmar-pago',
       urlReturn: 'https://inypro.netlify.app/gracias.html',
@@ -49,8 +42,6 @@ exports.handler = async (event) => {
 
     const body = new URLSearchParams(params).toString();
 
-    console.log('Enviando a Flow:', `${apiUrl}/payment/create`);
-
     const response = await fetch(`${apiUrl}/payment/create`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -58,7 +49,6 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
-    console.log('Respuesta Flow:', JSON.stringify(data));
 
     if (data.url && data.token) {
       return {
@@ -66,8 +56,11 @@ exports.handler = async (event) => {
         body: JSON.stringify({ redirectUrl: `${data.url}?token=${data.token}` }),
       };
     } else {
-      console.error('Flow error:', data);
-      return { statusCode: 500, body: JSON.stringify({ error: 'Error al crear pago en Flow', detail: data }) };
+      // Devolver el mensaje de Flow al frontend
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: data.message || 'Error al crear pago', code: data.code }),
+      };
     }
 
   } catch (err) {
