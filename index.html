@@ -1262,10 +1262,20 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         if (data.redirectUrl) {
           window.location.href = data.redirectUrl;
         } else {
-          throw new Error(data.error || 'Error al conectar con Flow');
+          // Mensajes amigables según el error de Flow
+          let msg = 'Hubo un problema al iniciar el pago. Intenta nuevamente.';
+          if (data.code === 1620 || (data.error && data.error.includes('Email'))) {
+            msg = 'El email ingresado no es válido. Por favor verifica que esté bien escrito.';
+            document.getElementById('cart-email').focus();
+          } else if (data.error) {
+            msg = data.error;
+          }
+          alert(msg);
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
         }
       } catch (err) {
-        alert('Hubo un problema al iniciar el pago. Por favor intenta nuevamente o contáctanos por WhatsApp.');
+        alert('Error de conexión. Por favor intenta nuevamente.');
         console.error(err);
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
@@ -1296,11 +1306,20 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         if (data.redirectUrl) {
           window.location.href = data.redirectUrl;
         } else {
-          throw new Error(data.error);
+          let msg = 'Hubo un problema al iniciar el pago. Intenta nuevamente.';
+          if (data.code === 1620 || (data.error && data.error.includes('Email'))) {
+            msg = 'El email ingresado no es válido. Por favor verifica que esté bien escrito.';
+            document.getElementById('ins-email').focus();
+          } else if (data.error) {
+            msg = data.error;
+          }
+          alert(msg);
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento';
         }
       })
       .catch(err => {
-        alert('Error al iniciar el pago. Contáctanos por WhatsApp.');
+        alert('Error de conexión. Por favor intenta nuevamente.');
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento';
       });
