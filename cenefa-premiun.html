@@ -169,12 +169,13 @@
 
     footer { background: var(--dark); color: #cbd5e1; text-align: center; padding: 30px 20px; font-size: 0.85rem; }
 
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 30px; }
-      .hero div:first-child { order: 2; }
-      .hero-img-wrap { order: 1; }
-      .header-inner { flex-direction: column; text-align: center; height: auto; padding: 16px 0; gap: 6px; }
-    }
+  @media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 30px; }
+  .hero div:first-child { order: 2; }
+  .hero-img-wrap { order: 1; overflow: hidden; }
+  .img-badge { font-size: 0.72rem; padding: 8px 14px; white-space: normal; text-align: center; width: 90%; left: 5%; transform: none; }
+  .header-inner { flex-direction: column; text-align: center; height: auto; padding: 16px 0; gap: 6px; }
+}
   </style>
 </head>
 <body>
