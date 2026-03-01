@@ -61,7 +61,7 @@
       margin: 24px 0; border-top: 4px solid var(--accent);
     }
     .calc-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 8px; }
-    .price-per-m { font-family: 'Oslwad', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .price-per-m { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
     .price-per-m span { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
 
     .metro-control { display: flex; align-items: center; gap: 12px; margin: 16px 0; }
@@ -100,9 +100,9 @@
     .btn-lg { padding: 16px 28px; font-size: 1rem; }
     .cta-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 
-    /* IMAGEN */
+    /* IMAGEN HERO */
     .hero-img-wrap { position: relative; }
-    .hero-img-wrap img { border-radius: 16px; box-shadow: var(--shadow-md); width: 100%; }
+    .hero-img-wrap img { border-radius: 16px; box-shadow: var(--shadow-md); width: 100%; height: auto; }
     .img-badge { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     .img-badge i { color: var(--accent); margin-right: 6px; }
 
@@ -156,7 +156,7 @@
     .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; }
     .cart-item span { font-size: 0.88rem; flex: 1; }
     .cart-footer { padding: 20px; border-top: 1px solid #e8edf3; background: #fafafa; }
-    .cart-total-row { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; color: var(--primary); margin-bottom: 16px; font-family: 'Oswald', sans-serif; }
+    .cart-total-row { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; color: var(--primary); margin-bottom: 16px; font-family: 'Syne', sans-serif; }
 
     /* FLOTANTES */
     .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 2000; transition: transform 0.3s; }
@@ -169,13 +169,74 @@
 
     footer { background: var(--dark); color: #cbd5e1; text-align: center; padding: 30px 20px; font-size: 0.85rem; }
 
+    /* ===== MOBILE FIX ===== */
   @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; gap: 30px; }
-  .hero div:first-child { order: 2; }
-  .hero-img-wrap { order: 1; overflow: hidden; }
-  .img-badge { font-size: 0.72rem; padding: 8px 14px; white-space: normal; text-align: center; width: 90%; left: 5%; transform: none; }
-  .header-inner { flex-direction: column; text-align: center; height: auto; padding: 16px 0; gap: 6px; }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 30px auto;
+    padding: 0 16px;
+  }
+
+  .hero-img-wrap {
+    order: 1;
+    width: 100%;
+    overflow: visible; /* ← era hidden, eso ocultaba el badge */
+    border-radius: 16px;
+    margin-bottom: 28px; /* ← espacio para el badge que cuelga abajo */
+  }
+
+  .hero-img-wrap img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
+    display: block;
+  }
+
+  /* Badge: mantiene absolute pero le damos espacio con margin-bottom en el wrapper */
+  .img-badge {
+    font-size: 0.72rem;
+    padding: 8px 16px;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -14px;
+  }
+
+  .hero > div:first-child {
+    order: 2;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 16px 0;
+    gap: 6px;
+  }
 }
+
+      /* Calculadora ocupa todo el ancho */
+      .price-calculator {
+        padding: 20px;
+      }
+
+      .metro-control {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .metro-control label {
+        width: 100%;
+      }
+
+      /* Botones full width en mobile */
+      .cta-group .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -241,8 +302,7 @@
           </button>
           <button class="btn btn-primary btn-block add-to-cart" data-product="Pack Instalación Cenefa" data-price="45000">
             <i class="fas fa-tools"></i> Agregar Pack Instalación
-         
-          </a>
+          </button>
         </div>
       </div>
 
@@ -386,7 +446,6 @@
     document.getElementById('open-cart').addEventListener('click', () => cartSidebar.classList.add('active'));
     document.getElementById('close-cart').addEventListener('click', () => cartSidebar.classList.remove('active'));
 
-    // Calculadora de metros
     function cambiarMetros(delta) {
       const input = document.getElementById('cantidad-metros');
       const nuevo = Math.max(1, parseInt(input.value) + delta);
@@ -415,7 +474,8 @@
 
     function saveAndRefresh() {
       localStorage.setItem('inypro_cart', JSON.stringify(cart));
-      updateUI(); cartSidebar.classList.add('active');
+      updateUI();
+      cartSidebar.classList.add('active');
     }
 
     function updateUI() {
@@ -434,7 +494,11 @@
       countDisplay.innerText = cart.length;
     }
 
-    window.removeItem = (i) => { cart.splice(i, 1); localStorage.setItem('inypro_cart', JSON.stringify(cart)); updateUI(); };
+    window.removeItem = (i) => {
+      cart.splice(i, 1);
+      localStorage.setItem('inypro_cart', JSON.stringify(cart));
+      updateUI();
+    };
 
     function irAPagar() {
       if (!cart.length) return alert('El carrito está vacío');
