@@ -562,7 +562,8 @@
         <span>Total:</span>
         <span id="cart-total">$0</span>
       </div>
-      <button class="btn btn-success btn-block btn-lg" id="checkout-btn">
+      <input type="email" id="cart-email" placeholder="Tu email para el comprobante" style="width:100%;padding:10px 14px;border:1px solid #d1d9e0;border-radius:8px;font-size:0.88rem;margin-bottom:10px;outline:none;font-family:inherit;">
+      <button class="btn btn-success btn-block btn-lg" id="checkout-btn" onclick="irAPagar()">
         <i class="fas fa-lock"></i> Pagar Ahora
       </button>
     </div>
@@ -615,6 +616,18 @@
       localStorage.setItem('inypro_cart', JSON.stringify(cart));
       updateUI();
     };
+    function irAPagar() {
+      if (!cart.length) { alert('El carrito esta vacio.'); return; }
+      const email = document.getElementById('cart-email').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Por favor ingresa tu email para continuar.');
+        document.getElementById('cart-email').focus();
+        return;
+      }
+      localStorage.setItem('inypro_cart', JSON.stringify(cart));
+      localStorage.setItem('inypro_email', email);
+      window.location.href = 'index.html?checkout=1';
+    }
   </script>
 </body>
 </html>
