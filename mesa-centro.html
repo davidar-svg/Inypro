@@ -37,31 +37,26 @@
     h1, h2, h3 { font-family: 'Oswald', sans-serif; line-height: 1.2; }
     p { color: var(--text-muted); line-height: 1.7; }
 
-    /* HEADER */
     header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 0 20px; }
     .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 20px; }
     .header-inner img { height: 46px; }
     .header-tagline { font-size: 1.1rem; font-weight: 700; font-style: italic; letter-spacing: 1px; opacity: 0.9; }
     .header-sub { font-size: 0.8rem; opacity: 0.65; }
 
-    /* HERO */
     .hero { max-width: 1200px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: #fef3c7; color: #92400e; padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
     .hero h1 { color: var(--primary); margin-bottom: 14px; font-size: clamp(1.8rem, 4vw, 2.6rem); }
     .hero > div:first-child > p { font-size: 1rem; margin-bottom: 24px; }
 
-    /* SPECS */
     .specs { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
     .specs li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: var(--text); padding: 10px 14px; background: white; border-radius: 8px; border-left: 3px solid var(--accent); }
     .specs li i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
 
-    /* DIMENSIONES */
     .dimensiones-box { background: var(--dark); border-radius: var(--radius); padding: 20px 24px; margin: 16px 0; display: flex; gap: 24px; }
     .dim { text-align: center; flex: 1; }
     .dim strong { display: block; font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--accent); }
     .dim span { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
 
-    /* PRECIO */
     .price-box { background: white; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-md); margin: 20px 0; border-top: 4px solid var(--accent); }
     .price-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 6px; }
     .price-main { font-family: 'Oswald', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--primary); }
@@ -70,7 +65,6 @@
     .price-sub { font-size: 0.88rem; color: var(--text-muted); }
     .price-sub strong { color: var(--primary); }
 
-    /* BOTONES */
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.25s; border: none; font-family: inherit; }
     .btn-primary { background: var(--primary); color: white; }
     .btn-primary:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(11,60,93,0.3); }
@@ -84,13 +78,11 @@
     .btn-lg { padding: 16px 28px; font-size: 1rem; }
     .cta-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 
-    /* IMAGEN */
     .hero-img-wrap { position: relative; }
     .hero-img-wrap img { border-radius: 16px; box-shadow: var(--shadow-md); width: 100%; }
     .img-badge { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); background: var(--dark); color: white; padding: 10px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
     .img-badge i { color: var(--accent); margin-right: 6px; }
 
-    /* MATERIALES */
     .materiales { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
     .section-title { text-align: center; margin-bottom: 50px; }
     .section-title h2 { color: var(--primary); margin-bottom: 10px; font-size: clamp(1.5rem, 3vw, 2rem); }
@@ -102,7 +94,6 @@
     .mat-card h3 { color: var(--primary); font-size: 1rem; margin-bottom: 8px; }
     .mat-card p { font-size: 0.88rem; }
 
-    /* PERSONALIZACIÓN */
     .personaliza { background: white; padding: 70px 20px; }
     .personaliza-inner { max-width: 1200px; margin: 0 auto; }
     .custom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
@@ -114,7 +105,6 @@
     .custom-price strong { color: var(--primary); font-family: 'Syne', sans-serif; font-size: 1.1rem; }
     .custom-img img { border-radius: var(--radius); box-shadow: var(--shadow-md); width: 100%; }
 
-    /* TESTIMONIOS */
     .testimonios-strip { background: var(--primary); padding: 60px 20px; }
     .testimonios-strip-inner { max-width: 1200px; margin: 0 auto; }
     .testimonios-strip .section-title h2 { color: white; }
@@ -126,13 +116,11 @@
     .test-author { font-size: 0.8rem; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; }
     .test-author strong { display: block; color: white; font-size: 0.88rem; margin-bottom: 2px; }
 
-    /* CTA */
     .cta-section { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 70px 20px; text-align: center; }
     .cta-section h2 { color: white; font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 12px; }
     .cta-section p { color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 30px; }
     .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-    /* CARRITO */
     #cart-sidebar { position: fixed; right: -380px; top: 0; width: 340px; height: 100vh; background: white; box-shadow: -4px 0 20px rgba(0,0,0,0.15); z-index: 4000; transition: right 0.3s ease; display: flex; flex-direction: column; }
     #cart-sidebar.active { right: 0; }
     .cart-header-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #e8edf3; }
@@ -145,7 +133,6 @@
     .cart-footer { padding: 20px; border-top: 1px solid #e8edf3; background: #fafafa; }
     .cart-total-row { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; color: var(--primary); margin-bottom: 16px; font-family: 'Oswald', sans-serif; }
 
-    /* FLOTANTES */
     .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 2000; transition: transform 0.3s; }
     .whatsapp-btn:hover { transform: scale(1.1); }
     .home-btn { position: fixed; bottom: 25px; left: 25px; background: var(--secondary); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 2000; transition: transform 0.3s, background 0.3s; }
@@ -215,7 +202,7 @@
           <div class="price-main">$175.000 <span>CLP</span></div>
           <hr class="price-divider">
           <div class="price-sub"><strong>Agendar Personalización desde $70.000 CLP</strong></div>
-          <div class="price-sub" style="margin-top:6px;">Envío por pagar según destino .</div>
+          <div class="price-sub" style="margin-top:6px;">Envío por pagar según destino.</div>
         </div>
 
         <div class="cta-group">
@@ -225,7 +212,6 @@
           <button class="btn btn-accent btn-block add-to-cart" data-product="Personalización Mesa de Centro" data-price="70000">
             <i class="fas fa-magic"></i> Agendar Personalización por ($70.000)
           </button>
-          </a>
         </div>
       </div>
 
@@ -235,7 +221,6 @@
       </div>
     </section>
 
-    <!-- MATERIALES -->
     <section class="materiales">
       <div class="section-title">
         <h2>Materiales de primera calidad</h2>
@@ -265,7 +250,6 @@
       </div>
     </section>
 
-    <!-- PERSONALIZACIÓN -->
     <section class="personaliza">
       <div class="personaliza-inner">
         <div class="custom-grid">
@@ -293,7 +277,6 @@
       </div>
     </section>
 
-    <!-- TESTIMONIOS -->
     <div class="testimonios-strip">
       <div class="testimonios-strip-inner">
         <div class="section-title">
@@ -320,7 +303,6 @@
       </div>
     </div>
 
-    <!-- CTA FINAL -->
     <div class="cta-section">
       <h2>¿Listo para sumar diseño a tu espacio?</h2>
       <p>Consulta disponibilidad de stock o cotiza tu mesa personalizada sin compromiso.</p>
@@ -339,7 +321,6 @@
     <p>© 2026 INYPRO · Viña del Mar, Chile · <a href="index.html" style="color:#94a3b8;">Volver al inicio</a></p>
   </footer>
 
-  <!-- Carrito -->
   <div id="cart-sidebar">
     <div class="cart-header-bar">
       <h3>Mi Carrito</h3>
@@ -370,7 +351,8 @@
       btn.addEventListener('click', () => {
         cart.push({ name: btn.dataset.product, price: parseInt(btn.dataset.price) });
         localStorage.setItem('inypro_cart', JSON.stringify(cart));
-        updateUI(); cartSidebar.classList.add('active');
+        updateUI();
+        cartSidebar.classList.add('active');
       });
     });
 
@@ -390,50 +372,49 @@
       countDisplay.innerText = cart.length;
     }
 
-    window.removeItem = (i) => { cart.splice(i, 1); localStorage.setItem('inypro_cart', JSON.stringify(cart)); updateUI(); };
-
-async function irAPagar() {
-  if (!cart.length) { alert('El carrito está vacío.'); return; }
-  const email = document.getElementById('cart-email').value.trim();
-  if (!email || !email.includes('@')) {
-    alert('Por favor ingresa tu email para continuar.');
-    document.getElementById('cart-email').focus();
-    return;
-  }
-  const btn = document.querySelector('#cart-sidebar .btn-success');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
-  try {
-    const response = await fetch('/.netlify/functions/crear-pago', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: cart, email }),
-    });
-    const data = await response.json();
-    if (data.redirectUrl) {
-      window.location.href = data.redirectUrl;
-    } else {
-      let msg = 'Hubo un problema al iniciar el pago. Intenta nuevamente.';
-      if (data.code === 1620 || (data.error && data.error.includes('Email'))) {
-        msg = 'El email ingresado no es válido. Por favor verifica que esté bien escrito.';
-        document.getElementById('cart-email').focus();
-      } else if (data.error) {
-        msg = data.error;
-      }
-      alert(msg);
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
-    }
-  } catch (err) {
-    alert('Error de conexión. Por favor intenta nuevamente.');
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
-  }
-}
+    window.removeItem = (i) => {
+      cart.splice(i, 1);
       localStorage.setItem('inypro_cart', JSON.stringify(cart));
-      localStorage.setItem('inypro_email', email);
-      window.location.href = 'index.html?checkout=1';
-    } 
+      updateUI();
+    };
+
+    async function irAPagar() {
+      if (!cart.length) { alert('El carrito está vacío.'); return; }
+      const email = document.getElementById('cart-email').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Por favor ingresa tu email para continuar.');
+        document.getElementById('cart-email').focus();
+        return;
+      }
+      const btn = document.querySelector('#cart-sidebar .btn-success');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+      try {
+        const response = await fetch('/.netlify/functions/crear-pago', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: cart, email }),
+        });
+        const data = await response.json();
+        if (data.redirectUrl) {
+          window.location.href = data.redirectUrl;
+        } else {
+          let msg = 'Hubo un problema al iniciar el pago. Intenta nuevamente.';
+          if (data.code === 1620 || (data.error && data.error.includes('Email'))) {
+            msg = 'El email ingresado no es válido. Por favor verifica que esté bien escrito.';
+            document.getElementById('cart-email').focus();
+          } else if (data.error) {
+            msg = data.error;
+          }
+          alert(msg);
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
+        }
+      } catch (err) {
+        alert('Error de conexión. Por favor intenta nuevamente.');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
+      }
     }
   </script>
 </body>
