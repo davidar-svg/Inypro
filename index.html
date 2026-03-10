@@ -1238,11 +1238,17 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
     }
 
     /* ===== PAGO CON FLOW ===== */
-    async function iniciarPago() {
-      if (cart.length === 0) {
-        alert('Tu carrito está vacío. Agrega al menos un producto para continuar.');
-        return;
-      }
+  // En tu archivo JS del sitio web
+async function iniciarPago(idProducto) {
+    const respuesta = await fetch('/.netlify/functions/pagar', {
+        method: 'POST',
+        body: JSON.stringify({ productId: idProducto })
+    });
+    const datos = await respuesta.json();
+    
+    // Redirigir al usuario a la URL que Flow nos devolvió
+    window.location.href = datos.url; 
+}
       const email = document.getElementById('cart-email').value.trim();
       if (!email || !email.includes('@')) {
         alert('Por favor ingresa tu email para continuar.');
