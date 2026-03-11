@@ -729,7 +729,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         </div>
         <div class="product-actions">
           <a href="filtro-agua.html" class="btn btn-primary"><i class="fas fa-eye"></i> Ver Detalle</a>
-          <button class="btn btn-success add-to-cart" data-product="Pack Filtración de Agua" data-price="179990"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
+          <button class="btn btn-success add-to-cart" data-product="Pack Filtración de Agua" data-product-id="filtro-agua"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
         </div>
       </div>
       <div>
@@ -758,7 +758,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         </div>
         <div class="product-actions">
           <a href="cerrojo-digital.html" class="btn btn-primary"><i class="fas fa-eye"></i> Ver Detalle</a>
-          <button class="btn btn-success add-to-cart" data-product="Cerrojo Digital de Huella" data-price="139900"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
+          <button class="btn btn-success add-to-cart" data-product="Cerrojo Digital de Huella" data-product-id="cerrojo-digital"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
         </div>
       </div>
     </div>
@@ -780,7 +780,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         </div>
         <div class="product-actions">
           <a href="cenefa-premiun.html" class="btn btn-primary"><i class="fas fa-eye"></i> Ver Detalle</a>
-          <button class="btn btn-success add-to-cart" data-product="Cenefa modular" data-price="179990"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
+          <button class="btn btn-success add-to-cart" data-product="Cenefa modular" data-product-id="cenefa-modular"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
         </div>
       </div>
       <div>
@@ -808,7 +808,7 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
         </div>
         <div class="product-actions">
           <a href="mesa-centro.html" class="btn btn-primary"><i class="fas fa-eye"></i> Ver Detalle</a>
-         <button class="btn btn-success add-to-cart" data-product="Mesa de centro" data-price="179990"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
+         <button class="btn btn-success add-to-cart" data-product="Mesa de centro" data-product-id="mesa-centro"><i class="fas fa-cart-plus"></i> Agregar al Carro</button>
         </div>
       </div>
     </div>
@@ -1067,6 +1067,10 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
           <option>Viernes tarde (14:00 – 18:00)</option>
         </select>
       </div>
+<div class="full" style="display: flex; align-items: center; gap: 8px; margin: 10px 0;">
+  <input type="checkbox" id="acepta-terminos-ins" required>
+  <label for="acepta-terminos-ins" style="font-size: 0.8rem;">Acepto los términos y condiciones de servicio.</label>
+</div>
       <textarea id="ins-notas" placeholder="Detalles adicionales..." rows="3" class="full"></textarea>
       <button type="submit" class="btn btn-success btn-lg full"><i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento</button>
     </form>
@@ -1121,35 +1125,48 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
       <h3>Mi Carrito</h3>
       <button id="close-cart">&times;</button>
     </div>
-    <div class="cart-items" id="cart-list"></div>
-    <div class="cart-footer">
-      <div class="cart-total-row">
-        <span>Total:</span>
-        <span id="cart-total">$0</span>
-      </div>
-      <input 
-        type="email" 
-        id="cart-email" 
-        placeholder="Tu email para el comprobante" 
-        style="width:100%; padding:10px 14px; border:1px solid #d1d9e0; border-radius:8px; font-size:0.88rem; margin-bottom:10px; outline:none; font-family:inherit;"
-      >
-      <button class="btn btn-success btn-block" id="checkout-btn" onclick="iniciarPago()">
-        <i class="fas fa-lock"></i> Pagar Ahora
-      </button>
-      <p style="font-size:0.72rem; color:#94a3b8; text-align:center; margin-top:10px;">
-        <i class="fas fa-shield-alt"></i> Pago 100% seguro procesado por Flow
-      </p>
-    </div>
+    <div class="cart-items" id="cart-list"></div><div class="cart-footer">
+  <div class="cart-total-row">
+    <span>Total:</span>
+    <span id="cart-total">$0</span>
+  </div>
+  
+  <input type="email" id="cart-email" placeholder="Tu email para el comprobante" autocomplete="email" style="width:100%; padding:10px 14px; border:1px solid #d1d9e0; border-radius:8px; font-size:0.88rem; margin-bottom:12px; outline:none; font-family:inherit;">
+
+  <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 15px;">
+    <input type="checkbox" id="acepta-terminos" style="width: auto; margin-top: 4px; cursor: pointer;">
+    <label for="acepta-terminos" style="font-size: 0.72rem; color: #64748b; line-height: 1.4; cursor: pointer;">
+      Acepto los <a href="javascript:void(0)" onclick="toggleModal('modalTerminos')" style="color: var(--secondary); text-decoration: underline;">Términos y Condiciones</a> y las <a href="javascript:void(0)" onclick="toggleModal('modalDevoluciones')" style="color: var(--secondary); text-decoration: underline;">Políticas de Devolución</a>.
+    </label>
   </div>
 
+  <button class="btn btn-success btn-block" id="checkout-btn" onclick="iniciarPago()">
+    <i class="fas fa-lock"></i> Pagar Ahora
+  </button>
+  <p style="font-size:0.72rem; color:#94a3b8; text-align:center; margin-top:10px;">
+    <i class="fas fa-shield-alt"></i> Pago 100% seguro procesado por Flow
+  </p>
+</div>
+
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    /* ===== CATÁLOGO DE PRECIOS (referencia visual en cliente) ===== */
+    // IMPORTANTE: estos precios son SOLO para mostrar en el carrito.
+    // Los precios reales son validados en el servidor (crear-pago.js).
+    const CATALOGO = {
+      'filtro-agua':      { nombre: 'Pack Filtración de Agua',    precio: 179990 },
+      'cerrojo-digital':  { nombre: 'Cerrojo Digital de Huella',  precio: 139900 },
+      'cenefa-modular':   { nombre: 'Cenefa Modular',             precio: 75000  },
+      'mesa-centro':      { nombre: 'Mesa de Centro',             precio: 175000 },
+    };
+
     /* ===== CARRITO ===== */
     const cartSidebar = document.getElementById('cart-sidebar');
-    const cartList = document.getElementById('cart-list');
+    const cartList    = document.getElementById('cart-list');
     const totalDisplay = document.getElementById('cart-total');
     const countDisplay = document.getElementById('count-val');
 
-    let cart = JSON.parse(localStorage.getItem('inypro_cart')) || [];
+    // El carrito almacena solo IDs de producto, nunca precios
+    let cart = JSON.parse(localStorage.getItem('inypro_cart_v2')) || [];
     updateUI();
 
     document.getElementById('open-cart').addEventListener('click', () => cartSidebar.classList.add('active'));
@@ -1157,8 +1174,10 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
 
     document.querySelectorAll('.add-to-cart').forEach(btn => {
       btn.addEventListener('click', () => {
-        cart.push({ name: btn.dataset.product, price: parseInt(btn.dataset.price) });
-        localStorage.setItem('inypro_cart', JSON.stringify(cart));
+        const productId = btn.dataset.productId;
+        if (!CATALOGO[productId]) return; // ID no reconocido, ignorar
+        cart.push(productId);
+        localStorage.setItem('inypro_cart_v2', JSON.stringify(cart));
         updateUI();
         cartSidebar.classList.add('active');
       });
@@ -1168,32 +1187,28 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
       if (cart.length === 0) {
         cartList.innerHTML = '<p style="text-align:center; color:#999; margin-top:30px;">Tu carrito está vacío</p>';
       } else {
-        cartList.innerHTML = cart.map((item, i) => `
-          <div class="cart-item">
-            <span>${item.name}</span>
-            <div style="display:flex; align-items:center; gap:10px;">
-              <span class="cart-item-price">$${item.price.toLocaleString('es-CL')}</span>
-              <button onclick="removeItem(${i})" style="background:none; border:none; color:#ef4444; cursor:pointer; padding:4px;"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
-        `).join('');
+        cartList.innerHTML = cart.map((id, i) => {
+          const item = CATALOGO[id];
+          if (!item) return '';
+          return `
+            <div class="cart-item">
+              <span>${item.nombre}</span>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span class="cart-item-price">$${item.precio.toLocaleString('es-CL')}</span>
+                <button onclick="removeItem(${i})" style="background:none; border:none; color:#ef4444; cursor:pointer; padding:4px;"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>`;
+        }).join('');
       }
-      const total = cart.reduce((s, i) => s + i.price, 0);
+      const total = cart.reduce((s, id) => s + (CATALOGO[id]?.precio || 0), 0);
       totalDisplay.innerText = `$${total.toLocaleString('es-CL')}`;
       countDisplay.innerText = cart.length;
     }
 
     window.removeItem = (i) => {
       cart.splice(i, 1);
-      localStorage.setItem('inypro_cart', JSON.stringify(cart));
+      localStorage.setItem('inypro_cart_v2', JSON.stringify(cart));
       updateUI();
-    };
-
-    window.addToCart = (name, price) => {
-      cart.push({ name, price });
-      localStorage.setItem('inypro_cart', JSON.stringify(cart));
-      updateUI();
-      cartSidebar.classList.add('active');
     };
 
     /* ===== FORMULARIOS ===== */
@@ -1237,100 +1252,90 @@ la V región y alrededores. Instalador autorizado SEC. Solicita cotización grat
       track.style.transform = `translateX(${next}px)`;
     }
 
-    /* ===== PAGO CON FLOW ===== */
-  // En tu archivo JS del sitio web
-async function iniciarPago(idProducto) {
-    const respuesta = await fetch('/.netlify/functions/pagar', {
-        method: 'POST',
-        body: JSON.stringify({ productId: idProducto })
-    });
-    const datos = await respuesta.json();
-    
-    // Redirigir al usuario a la URL que Flow nos devolvió
-    window.location.href = datos.url; 
-}
-      const email = document.getElementById('cart-email').value.trim();
-      if (!email || !email.includes('@')) {
-        alert('Por favor ingresa tu email para continuar.');
-        document.getElementById('cart-email').focus();
-        return;
-      }
-      const btn = document.getElementById('checkout-btn');
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
-      try {
+   
+/* ===== PAGO CON FLOW (CARRITO) ===== */
+async function iniciarPago() {
+    const emailInput = document.getElementById('cart-email');
+    const email = emailInput.value.trim();
+    const checkbox = document.getElementById('acepta-terminos');
+
+    if (cart.length === 0) { alert('Carrito vacío.'); return; }
+    if (!emailInput.checkValidity() || !email) { alert('Ingresa un email válido.'); return; }
+    if (!checkbox || !checkbox.checked) { alert('Debes aceptar los términos y condiciones.'); return; }
+
+    const btn = document.getElementById('checkout-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+
+    try {
+        // Enviamos solo los IDs — el servidor determina los precios reales
         const response = await fetch('/.netlify/functions/crear-pago', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: cart, email }),
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items: cart, email })
         });
+
         const data = await response.json();
+
         if (data.redirectUrl) {
-          window.location.href = data.redirectUrl;
+            // Validar que la URL pertenece a Flow antes de redirigir
+            const url = new URL(data.redirectUrl);
+            if (!url.hostname.endsWith('flow.cl')) throw new Error('URL de redirección no confiable');
+            window.location.href = data.redirectUrl;
         } else {
-          // Mensajes amigables según el error de Flow
-          let msg = 'Hubo un problema al iniciar el pago. Intenta nuevamente.';
-          if (data.code === 1620 || (data.error && data.error.includes('Email'))) {
-            msg = 'El email ingresado no es válido. Por favor verifica que esté bien escrito.';
-            document.getElementById('cart-email').focus();
-          } else if (data.error) {
-            msg = data.error;
-          }
-          alert(msg);
-          btn.disabled = false;
-          btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
+            throw new Error(data.error || 'Error al conectar con Flow');
         }
-      } catch (err) {
-        alert('Error de conexión. Por favor intenta nuevamente.');
-        console.error(err);
+    } catch (error) {
+        console.error('Error de pago:', error);
+        alert('Hubo un problema al procesar el pago. Intenta nuevamente.');
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-lock"></i> Pagar Ahora';
-      }
     }
+}
+/* ===== INSPECCIÓN - PAGO FLOW SEGURO ===== */
+function procesarInspeccion(e) {
+  e.preventDefault();
 
-    /* ===== INSPECCIÓN - PAGO FLOW ===== */
-    function procesarInspeccion(e) {
-      e.preventDefault();
-      const nombre = document.getElementById('ins-nombre').value;
-      const horario = document.getElementById('ins-horario').value;
-      const email = document.getElementById('ins-email').value.trim();
-      if (!nombre || !horario || !email) {
-        alert('Por favor completa todos los campos.');
-        return;
-      }
-      const cart_inspeccion = [{ name: 'Inspección Técnica – ' + horario, price: 129000 }];
-      const btn = e.submitter;
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
-      fetch('/.netlify/functions/crear-pago', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: cart_inspeccion, nombre, email }),
-      })
-      .then(r => r.json())
-      .then(data => {
-        if (data.redirectUrl) {
-          window.location.href = data.redirectUrl;
-        } else {
-          let msg = 'Hubo un problema al iniciar el pago. Intenta nuevamente.';
-          if (data.code === 1620 || (data.error && data.error.includes('Email'))) {
-            msg = 'El email ingresado no es válido. Por favor verifica que esté bien escrito.';
-            document.getElementById('ins-email').focus();
-          } else if (data.error) {
-            msg = data.error;
-          }
-          alert(msg);
-          btn.disabled = false;
-          btn.innerHTML = '<i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento';
-        }
-      })
-      .catch(err => {
-        alert('Error de conexión. Por favor intenta nuevamente.');
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento';
-      });
+  const nombre = document.getElementById('ins-nombre').value.trim();
+  const email  = document.getElementById('ins-email').value.trim();
+  const horario = document.getElementById('ins-horario').value;
+  const emailInput = document.getElementById('ins-email');
+  const aceptaTerminos = document.getElementById('acepta-terminos-ins').checked;
+
+  if (!aceptaTerminos) { alert('Debes aceptar los términos para agendar.'); return; }
+  if (!nombre || !email || !horario) { alert('Por favor completa todos los campos obligatorios.'); return; }
+  if (!emailInput.checkValidity()) { alert('El email ingresado no es válido.'); return; }
+
+  // Enviamos el ID del servicio — el servidor fija el precio de $129.000
+  const items_inspeccion = ['inspeccion'];
+
+  const btn = e.submitter;
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+
+  fetch('/.netlify/functions/crear-pago', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items: items_inspeccion, nombre, email, horario }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.redirectUrl) {
+      const url = new URL(data.redirectUrl);
+      if (!url.hostname.endsWith('flow.cl')) throw new Error('URL no confiable');
+      window.location.href = data.redirectUrl;
+    } else {
+      alert(data.error || 'Error al procesar agendamiento');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento';
     }
-
+  })
+  .catch(err => {
+    alert('Error de conexión. Intenta nuevamente.');
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-credit-card"></i> Pagar e Iniciar Agendamiento';
+  });
+}
   </script>
 </body>
 </html>
